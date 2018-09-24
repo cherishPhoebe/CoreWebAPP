@@ -1,0 +1,10 @@
+2018-09-18 12:16:11.3468  INFO Request starting HTTP/1.1 DEBUG http://localhost:65315/  0
+2018-09-18 12:16:11.3468  INFO Request starting HTTP/1.1 GET http://localhost:65315/  
+2018-09-18 12:16:11.4431  INFO Request finished in 169.7242ms 200 
+2018-09-18 12:16:11.6534  INFO Executing action method CoreWebApp.Controllers.HomeController.Index (CoreWebApp) with arguments ((null)) - ModelState is Valid
+2018-09-18 12:16:11.6804  INFO info：你访问了首页
+2018-09-18 12:16:11.7171  WARN warn：警告信息
+2018-09-18 12:16:11.7421  ERROR error：错误信息
+2018-09-18 12:16:13.9107  INFO Executing ViewResult, running view at path /Views/Home/Index.cshtml.
+2018-09-18 12:16:14.2237  INFO Executed action CoreWebApp.Controllers.HomeController.Index (CoreWebApp) in 2628.6775ms
+2018-09-18 12:16:14.2356  INFO Request finished in 2967.3811ms 200 text/html; charset=utf-8
