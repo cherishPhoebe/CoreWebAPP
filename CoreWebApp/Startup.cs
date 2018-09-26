@@ -12,6 +12,8 @@ using NLog.Extensions.Logging;
 using Business.Interfaces;
 using Business.Models;
 using Business.Services;
+using DAO;
+using Microsoft.EntityFrameworkCore;
 
 namespace CoreWebApp
 {
@@ -42,6 +44,16 @@ namespace CoreWebApp
                 // 设置回话过期时间，独立于cookie的过期时间
                 options.IdleTimeout = TimeSpan.FromSeconds(10);
                 // session是无锁的，如果两个请求都尝试修改回话的内容，最后一个会成功，此外，Session被实现为一个内容连贯的会话，就是说所有的内容都是一起存储。这就意味着，如果两个请求是在修改会话中不同的部分，不同键的值，他们还是会互相造成影响的。
+            });
+
+            // 使用缓存
+            services.AddMemoryCache();
+            // 数据库连接字符串
+            var connection = @"Server=.;Database=Note;UID=sa;PWD=sa;";
+            // 添加sql server 上下文
+            services.AddDbContext<NoteContext>(options =>
+            {
+                options.UseSqlServer(connection);
             });
         }
 
