@@ -345,3 +345,5 @@ ASALocalRun/
 *.ide-shm
 *.csprojAssemblyReference.cache
 *.dll
+/Business/obj/Debug/netstandard2.0/Business.csproj.FileListAbsolute.txt
+/Business/obj/Debug/netstandard2.0/Business.csprojAssemblyReference.cache
