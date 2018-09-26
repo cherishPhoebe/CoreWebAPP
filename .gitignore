@@ -344,3 +344,4 @@ ASALocalRun/
 /CoreWebApp/obj/project.assets.json
 *.ide-shm
 *.csprojAssemblyReference.cache
+*.dll

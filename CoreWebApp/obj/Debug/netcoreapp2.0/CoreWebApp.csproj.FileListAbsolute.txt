@@ -26,3 +26,5 @@ G:\CoreWebApp\CoreWebApp\obj\Debug\netcoreapp2.0\CoreWebApp.AssemblyInfo.cs
 G:\CoreWebApp\CoreWebApp\obj\Debug\netcoreapp2.0\CoreWebApp.csproj.CopyComplete
 G:\CoreWebApp\CoreWebApp\obj\Debug\netcoreapp2.0\CoreWebApp.dll
 G:\CoreWebApp\CoreWebApp\obj\Debug\netcoreapp2.0\CoreWebApp.pdb
+F:\midnight\sourceCode\dotnetCore\CoreWebAPP\CoreWebApp\bin\Debug\netcoreapp2.0\Business.pdb
+F:\midnight\sourceCode\dotnetCore\CoreWebAPP\CoreWebApp\obj\Debug\netcoreapp2.0\CoreWebApp.csproj.CopyComplete
