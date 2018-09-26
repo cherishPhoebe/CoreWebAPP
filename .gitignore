@@ -347,3 +347,8 @@ ASALocalRun/
 *.dll
 /Business/obj/Debug/netstandard2.0/Business.csproj.FileListAbsolute.txt
 /Business/obj/Debug/netstandard2.0/Business.csprojAssemblyReference.cache
+*.txt
+/.vs/config/applicationhost.config
+/CoreWebApp/bin/Debug/netcoreapp2.0/CoreWebApp.dll
+/CoreWebApp/obj/Debug/netcoreapp2.0/CoreWebApp.csproj.FileListAbsolute.txt
+/CoreWebApp/obj/Debug/netcoreapp2.0/CoreWebApp.pdb
