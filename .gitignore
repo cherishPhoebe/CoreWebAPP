@@ -332,3 +332,14 @@ ASALocalRun/
 # Local History for Visual Studio
 .localhistory/
 *.csproj.CoreCompileInputs.cache
+*.assets.cache
+/Business/obj/Business.csproj.nuget.cache
+/Business/obj/Business.csproj.nuget.g.props
+/Business/obj/Debug/netstandard2.0/Business.assets.cache
+/Business/obj/project.assets.json
+/CoreWebApp/obj/CoreWebApp.csproj.nuget.cache
+/CoreWebApp/obj/CoreWebApp.csproj.nuget.g.props
+/CoreWebApp/obj/Debug/netcoreapp2.0/CoreWebApp.assets.cache
+/CoreWebApp/obj/Debug/netcoreapp2.0/CoreWebApp.csproj.CoreCompileInputs.cache
+/CoreWebApp/obj/project.assets.json
+*.ide-shm
