@@ -14,6 +14,7 @@ using Business.Models;
 using Business.Services;
 using DAO;
 using Microsoft.EntityFrameworkCore;
+using CoreWebApp.Extensions;
 
 namespace CoreWebApp
 {
@@ -74,7 +75,9 @@ namespace CoreWebApp
             }
 
             loggerFactory.AddNLog();
-            
+
+            // 自定义中间件
+            app.UseHttpContextItems();
 
             app.UseStaticFiles();
 

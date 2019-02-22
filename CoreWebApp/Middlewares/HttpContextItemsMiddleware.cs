@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CoreWebApp.Middleware
+namespace CoreWebApp.Middlewares
 {
     public class HttpContextItemsMiddleware
     {
@@ -25,11 +25,4 @@ namespace CoreWebApp.Middleware
     }
 
 
-    public static class HttpContextItemsMiddlewareExtensions
-    {
-        public static IApplicationBuilder UseHttpContextItemsMiddleware(this IApplicationBuilder builder)
-        {
-            return builder.UseMiddleware<HttpContextItemsMiddleware>();
-        }
-    }
 }
