@@ -1,8 +1,4 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
 
 namespace CoreWebApp.Middleware
@@ -24,12 +20,4 @@ namespace CoreWebApp.Middleware
         }
     }
 
-
-    public static class HttpContextItemsMiddlewareExtensions
-    {
-        public static IApplicationBuilder UseHttpContextItemsMiddleware(this IApplicationBuilder builder)
-        {
-            return builder.UseMiddleware<HttpContextItemsMiddleware>();
-        }
-    }
 }

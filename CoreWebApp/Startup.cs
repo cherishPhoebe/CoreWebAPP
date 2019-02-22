@@ -14,6 +14,7 @@ using Business.Models;
 using Business.Services;
 using DAO;
 using Microsoft.EntityFrameworkCore;
+using CoreWebApp.Extensions;
 
 namespace CoreWebApp
 {
@@ -60,7 +61,7 @@ namespace CoreWebApp
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env,ILoggerFactory loggerFactory)
         {
-            // 注册编码，放置中文乱码
+            // 注册编码，防止中文乱码
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
             if (env.IsDevelopment())
@@ -74,8 +75,8 @@ namespace CoreWebApp
             }
 
             loggerFactory.AddNLog();
-            
-
+            // 自定义中间件
+            app.UseHttpContextItems();
             app.UseStaticFiles();
 
             // 必须在UseMvc前调用，因为在调用UseSession之前访问session则会出现InvalidOpreationException的错误
@@ -85,7 +86,7 @@ namespace CoreWebApp
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Home}/{action=Index}/{id:int?}");
             });
         }
     }
