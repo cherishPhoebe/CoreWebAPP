@@ -2,11 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Application.UserApp;
+using Domain.IRepositories;
+using EntityFrameworkCore;
+using EntityFrameworkCore.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -24,6 +29,15 @@ namespace CMS.Admin
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //获取数据库连接字符串
+            var sqlConnectionString = Configuration.GetConnectionString("Default");
+            // 添加数据库上下文
+            services.AddDbContext<ZYDBContext>(options =>
+            {
+                options.UseSqlServer(sqlConnectionString);
+               
+            });
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
@@ -31,6 +45,8 @@ namespace CMS.Admin
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserAppService, UserAppService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
@@ -57,8 +73,11 @@ namespace CMS.Admin
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Login}/{action=Index}/{id?}");
             });
+
+            // 初始化数据
+            //SeedData.Initialize(app.ApplicationServices);
         }
     }
 }
