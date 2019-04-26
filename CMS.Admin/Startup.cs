@@ -49,6 +49,8 @@ namespace CMS.Admin
             services.AddScoped<IUserAppService, UserAppService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            // 添加Session服务,管理会话状态
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -69,6 +71,8 @@ namespace CMS.Admin
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
+            app.UseSession();
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
@@ -77,7 +81,7 @@ namespace CMS.Admin
             });
 
             // 初始化数据
-            //SeedData.Initialize(app.ApplicationServices);
+            SeedData.Initialize(app.ApplicationServices);
         }
     }
 }
