@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Application;
+using Application.DepartmentApp;
+using Application.MenuApp;
+using Application.RoleApp;
 using Application.UserApp;
 using Domain.IRepositories;
 using EntityFrameworkCore;
@@ -9,7 +9,6 @@ using EntityFrameworkCore.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -22,6 +21,10 @@ namespace CMS.Admin
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
+            // 初始化映射关系
+            ZYMapper.Initialize();
+
         }
 
         public IConfiguration Configuration { get; }
@@ -35,7 +38,7 @@ namespace CMS.Admin
             services.AddDbContext<ZYDBContext>(options =>
             {
                 options.UseSqlServer(sqlConnectionString);
-               
+
             });
 
             services.Configure<CookiePolicyOptions>(options =>
@@ -45,8 +48,15 @@ namespace CMS.Admin
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            // 依赖注入
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserAppService, UserAppService>();
+            services.AddScoped<IMenuRepository, MenuRepository>();
+            services.AddScoped<IMenuAppService, MenuAppService>();
+            services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+            services.AddScoped<IDepartmentAppService, DepartmentAppService>();
+            services.AddScoped<IRoleRepository, RoleRepository>();
+            services.AddScoped<IRoleAppService, RoleAppService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             // 添加Session服务,管理会话状态
