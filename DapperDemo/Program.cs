@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq;
 
 namespace DapperDemo
 {
@@ -39,6 +40,9 @@ namespace DapperDemo
                         break;
                     case "EXIT":
                         Environment.Exit(0);
+                        break;
+                    case "LINQ":
+                        test_linq_forXml();
                         break;
                     default:
                         Console.WriteLine("请输入合法的指令!");
@@ -131,5 +135,46 @@ values (@title,@content,@status,@add_time,@modify_time)";
 
         }
 
+
+        static void test_linq_forXml() {
+            var jobList = new List<JobEntity>();
+            jobList.Add(new JobEntity { Id = 1, Job = "ZY", Name = "lZY" });
+            jobList.Add(new JobEntity { Id = 1, Job = "ZY1", Name = "lZY1" });
+            jobList.Add(new JobEntity { Id = 2, Job = "ZY2", Name = "lZY2" });
+            jobList.Add(new JobEntity { Id = 2, Job = "ZY22", Name = "lZY22" });
+            jobList.Add(new JobEntity { Id = 2, Job = "ZY222", Name = "lZY222" });
+            jobList.Add(new JobEntity { Id = 3, Job = "ZY3", Name = "lZY3" });
+            jobList.Add(new JobEntity { Id = 3, Job = "ZY33", Name = "lZY33" });
+            jobList.Add(new JobEntity { Id = 3, Job = "ZY333", Name = "lZY333" });
+
+            var result = jobList.GroupBy(e => e.Id).ToList()
+                        .Select(eg => new
+                        {
+                            Id = eg.Key,
+                            Job = string.Join(",",eg.Select(i => i.Job)),
+                            Name = string.Join(",", eg.Select(i => i.Name)),
+                            Total = eg.Count()
+                        }).ToList();
+
+            foreach (var item in result)
+            {
+                Console.WriteLine("id:{0};job:{1};name:{2};Total:{3}", item.Id.ToString(), item.Job, item.Name,item.Total);
+            }
+
+        }
+
+
     }
+
+
+    public class JobEntity {
+        public int Id { get; set; }
+
+        public string Name { get; set; }
+
+        public string Job { get; set; }
+
+        public string Total { get; set; }
+    }
+
 }
