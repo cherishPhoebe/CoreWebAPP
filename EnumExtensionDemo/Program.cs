@@ -10,6 +10,7 @@ namespace EnumExtensionDemo
 
             var colorEnumsString = GetFriendlyColorEnums();
 
+            
 
             Console.WriteLine("Hello World!");
             Console.ReadKey();

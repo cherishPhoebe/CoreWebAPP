@@ -1,6 +1,9 @@
 ﻿using Application.UserApp;
 using CMS.Admin.Models;
+using Domain.Entities;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System.Linq;
 using Utility.Convert;
 
@@ -18,7 +21,22 @@ namespace CMS.Admin.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            var userStr = HttpContext.Session.GetString("CurrentUser");
+            if (!string.IsNullOrEmpty(userStr))
+            {
+                var user = JsonConvert.DeserializeObject<User>(userStr);
+                if (user == null)
+                {
+                    return View();
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            else {
+                return View();
+            }
         }
 
         [HttpPost]
@@ -28,7 +46,7 @@ namespace CMS.Admin.Controllers
                 var user = _userAppService.CheckUser(model.UserName, model.Password);
                 if (user != null) {
                     // 记录Session
-                    HttpContext.Session.Set("CurrentUser", ByteConvertHelper.Object2Bytes(user));
+                    HttpContext.Session.SetString("CurrentUser", JsonConvert.SerializeObject(user));
                     // 跳转到系统首页
                     return RedirectToAction("Index", "Home");
                 }

@@ -630,7 +630,6 @@
         <div class="control-sidebar-bg"></div>
 
     </div>
-    @RenderSection("scripts", false)
     <!-- ./wrapper -->
     <!-- jQuery 3 -->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -650,9 +649,6 @@
     <script src="~/lib/jstree/dist/jstree.js"></script>
     <!-- ChartJS -->
     <script src="~/lib/chart.js/Chart.js"></script>
-    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="~/js/dashboard2.js"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="~/js/demo.js"></script>
+    @RenderSection("scripts", false)
 </body>
 </html>
