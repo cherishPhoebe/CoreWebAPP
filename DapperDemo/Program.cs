@@ -9,7 +9,7 @@ namespace DapperDemo
     class Program
     {
         // 数据库连接字符串
-        private const string connectionStr = "Data Source=127.0.0.1;User ID=sa;Password=sa;Initial Catalog=DapperDemo;Pooling=true;Max Pool Size=100;";
+        private const string connectionStr = @"Data Source=127.0.0.1;User ID=sa;Password=sa;Initial Catalog=DapperDemo;Pooling=true;Max Pool Size=100;";
 
         static void Main(string[] args)
         {
